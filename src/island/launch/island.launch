@@ -1,0 +1,9 @@
+<launch>
+        <node pkg="tf" type="static_transform_publisher" name="world_broadcast" args="-1 0 0 0 0 0 1 world circle 100" output = "screen"/>
+        <node pkg="island" type="castaway_node" name="castaway" output = "screen">
+        </node>
+        <node pkg="island" type="shark_node" name="shark" output = "screen">
+        </node>
+        <node pkg="island" type="tf_node" name="tf" output = "screen">
+        </node>
+</launch>
