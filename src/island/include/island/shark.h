@@ -1,8 +1,8 @@
 #ifndef SHARK_H_
 #define SHARK_H_
 
-#include <ros/ros.h>
 #include <geometry_msgs/PointStamped.h>
+#include <ros/ros.h>
 
 #include "island/entity.h"
 

@@ -79,10 +79,7 @@ void Castaway::MoveStraightForShore(const double& dist) {
 void Castaway::MoveAntipodal(const double& dist) {
   ROS_INFO_STREAM("Castaway moving antipodal to the shark");
   double antipodal_theta = atan2(-shark_pos_.point.y, -shark_pos_.point.x);
-  // ROS_DEBUG_STREAM("antipodal_theta: " << antipodal_theta);
-
   double r_castaway = GetDistanceFromCenter(castaway_pos_);
-  ROS_DEBUG_STREAM("r_castaway: " << r_castaway);
 
   if (r_castaway == 0) {
     double dx = dist * cos(antipodal_theta);
@@ -97,18 +94,14 @@ void Castaway::MoveAntipodal(const double& dist) {
 
   double antipodal_offset = sqrt(pow(x_2 - castaway_pos_.point.x, 2) +
                                  pow(y_2 - castaway_pos_.point.y, 2));
+  double d_direction = antipodal_offset / dist;
+  double theta_direction = acos(d_direction);
 
-  double theta_direction = cos(antipodal_offset / dist);
-  ROS_DEBUG_STREAM("theta_direction: " << theta_direction);
   double y_dist = dist * sin(theta_direction);
   double r_new_castaway = y_dist + r_castaway;
-  // ROS_DEBUG_STREAM("y_dist: " << y_dist);
-  // ROS_DEBUG_STREAM("r_new_castaway: " << r_new_castaway);
 
   double dx = r_new_castaway * cos(antipodal_theta);
   double dy = r_new_castaway * sin(antipodal_theta);
-  // ROS_DEBUG_STREAM("dx: " << dx);
-  // ROS_DEBUG_STREAM("dy: " << dy);
 
   castaway_pos_.point.x = dx;
   castaway_pos_.point.y = dy;
@@ -149,12 +142,6 @@ bool Castaway::CalculateCastawayPosition() {
 
   castaway_pos_.header.stamp = ros::Time::now();
   previous_pt_ = castaway_pos_;
-
-  // ROS_DEBUG_STREAM("d_time:" << d_time);
-  // ROS_DEBUG_STREAM("Castaway x,y " << castaway_pos_.point.x << ", "
-  //                                  << castaway_pos_.point.y);
-  // ROS_DEBUG_STREAM("d_time:" << d_time);
-  // ROS_DEBUG_STREAM("d_dist: " << d_dist);
 
   return true;
 }

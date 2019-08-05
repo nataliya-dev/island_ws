@@ -1,8 +1,8 @@
 #ifndef CASTAWAY_H_
 #define CASTAWAY_H_
 
-#include <ros/ros.h>
 #include <geometry_msgs/PointStamped.h>
+#include <ros/ros.h>
 
 #include "island/entity.h"
 

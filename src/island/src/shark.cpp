@@ -59,6 +59,7 @@ bool Shark::CalculateSharkPosition() {
   double theta_castaway = atan2(castaway_pos_.point.y, castaway_pos_.point.x);
   double theta_shark = atan2(shark_pos_.point.y, shark_pos_.point.x);
   double alpha = theta_castaway - theta_shark;
+  alpha = std::fmod(alpha + 180, 360) - 180;
   double d_time = CalcTimeDiffFromNow(previous_pt_.header.stamp);
   double d_dist = SHARK_SPEED * d_time;
   if (fabs(alpha) < d_dist) {

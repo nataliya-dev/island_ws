@@ -18,18 +18,12 @@ class Entity {
   geometry_msgs::PointStamped castaway_pos_;
 
   double GetDistanceFromCenter(const geometry_msgs::PointStamped &point);
-
   int CheckTerminationCondition(double eps = 0.01);
-
   bool IsPointOnCircleCircumference(const geometry_msgs::PointStamped &point,
                                     double eps = 0.01);
-
   bool IsPointInsideCircle(const geometry_msgs::PointStamped &point);
-
   bool IsSharkZeroPosition();
-
   double CalcTimeDiffFromNow(const ros::Time &t1);
-
   double GetDistanceBetweenTwoPts(const geometry_msgs::PointStamped &point1,
                                   const geometry_msgs::PointStamped &point2);
 };
